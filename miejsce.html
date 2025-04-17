@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Miejsce podróży</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .miejsce-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .miejsce-content {
+            padding: 30px;
+        }
+        .miejsce-content h2 {
+            color: #1f74c3;
+            margin-top: 0;
+        }
+        .miejsce-content p {
+            color: #444;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #1f74c3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="miejsce-img" class="miejsce-image" src="" alt="" />
+        <div class="miejsce-content">
+            <h2 id="miejsce-title"></h2>
+            <p id="miejsce-description"></p>
+            <a href="inspiracje.html" class="back-link">&larr; Powrót do inspiracji</a>
+        </div>
+    </div>
+
+    <script>
+        const miejsca = {
+            malediwy: {
+                title: "Malediwy",
+                img: "https://images.unsplash.com/photo-1669495373534-5d4e32abee7b?w=1200",
+                desc: "Rajskie plaże, turkusowa woda i niezapomniane zachody słońca. Malediwy to archipelag ponad tysiąca wysp na Oceanie Indyjskim, idealny na romantyczny wypoczynek i nurkowanie w krystalicznie czystych wodach."
+            },
+            alpy: {
+                title: "Alpy Szwajcarskie",
+                img: "https://plus.unsplash.com/premium_photo-1689084892324-fd8822cb97c1?w=1200",
+                desc: "Spektakularne widoki i idealne miejsce na aktywny wypoczynek. Alpy oferują doskonałe warunki do uprawiania narciarstwa, pieszych wędrówek i podziwiania natury w najczystszej postaci."
+            },
+            tokio: {
+                title: "Tokio",
+                img: "https://plus.unsplash.com/premium_photo-1661914240950-b0124f20a5c1?w=1200",
+                desc: "Miasto przyszłości, które nigdy nie śpi – pełne kultury i technologii. Tokio to unikalne połączenie nowoczesnych wieżowców, tradycyjnych świątyń i znakomitej kuchni."
+            },
+            safari: {
+                title: "Safari w Afryce",
+                img: "https://images.unsplash.com/photo-1542085215-673021bf5caa?w=1200",
+                desc: "Spotkaj dzikie zwierzęta w ich naturalnym środowisku. Safari to niezapomniana przygoda w sercu sawanny, gdzie możesz zobaczyć lwy, słonie, żyrafy i inne gatunki."
+            },
+            amazonia: {
+                title: "Amazonia",
+                img: "https://images.unsplash.com/photo-1591081658714-f576fb7ea3ed?w=1200",
+                desc: "Największy las deszczowy świata pełen niezwykłej fauny i flory. Amazonia to tętniący życiem ekosystem, idealny dla miłośników przyrody i przygód."
+            },
+            rafa: {
+                title: "Wielka Rafa Koralowa",
+                img: "https://images.unsplash.com/photo-1694064416708-86643bd67335?w=1200",
+                desc: "Odkryj podwodny świat pełen kolorowych koralowców i ryb. To jedno z najpiękniejszych miejsc do nurkowania na świecie, z niesamowitą bioróżnorodnością."
+            },
+            machu: {
+                title: "Machu Picchu",
+                img: "https://plus.unsplash.com/premium_photo-1694475501155-2f344cea9eb3?w=1200",
+                desc: "Starożytne miasto Inków położone wysoko w peruwiańskich Andach. Machu Picchu fascynuje swoją historią, architekturą i spektakularnymi widokami."
+            },
+            santorini: {
+                title: "Santorini",
+                img: "https://plus.unsplash.com/premium_photo-1661964149725-fbf14eabd38c?w=1200",
+                desc: "Białe domki z niebieskimi kopułami na tle błękitnego morza. Santorini to romantyczna wyspa w Grecji, znana z malowniczych zachodów słońca i lokalnej kuchni."
+            },
+            petra: {
+                title: "Petra",
+                img: "https://plus.unsplash.com/premium_photo-1724754604549-f48d1caab92a?w=1200",
+                desc: "Wykute w skale miasto w Jordanii, pełne historii i tajemnic. Petra to jedno z nowych siedmiu cudów świata i ikona starożytnej architektury."
+            },
+        };
+
+        const query = new URLSearchParams(window.location.search);
+        const miejsceKey = query.get("miejsce");
+        const miejsce = miejsca[miejsceKey];
+
+        if (miejsce) {
+            document.getElementById("miejsce-img").src = miejsce.img;
+            document.getElementById("miejsce-img").alt = miejsce.title;
+            document.getElementById("miejsce-title").textContent = miejsce.title;
+            document.getElementById("miejsce-description").textContent = miejsce.desc;
+        } else {
+            document.querySelector(".container").innerHTML =
+                '<div style="padding: 40px; text-align: center;"><h2 style="color: #c0392b">Nie znaleziono miejsca 🧐</h2><a href="inspiracje.html" class="back-link">&larr; Wróć do inspiracji</a></div>';
+        }
+    </script>
+</body>
+</html>

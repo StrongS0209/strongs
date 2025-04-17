@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Galeria wspomnień</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Galeria wspomnień</h1>
+    <input type="file" accept="image/*" id="upload">
+    <div id="galeria"></div>
+
+    <script>
+        const upload = document.getElementById('upload');
+        const galeria = document.getElementById('galeria');
+
+        upload.addEventListener('change', function() {
+            const file = upload.files[0];
+            const reader = new FileReader();
+            reader.onload = function() {
+                const img = document.createElement('img');
+                img.src = reader.result;
+                img.style.maxWidth = "200px";
+                galeria.appendChild(img);
+            };
+            if (file) reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>

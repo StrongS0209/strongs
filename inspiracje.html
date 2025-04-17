@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Inspiracje podróżnicze</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        header.main-header {
+            background-color: #1f74c3;
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .main-header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .main-header h1 {
+            color: white;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            background-color: #155a99;
+        }
+
+        .content {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .inspiration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .inspiration-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .inspiration-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .inspiration-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .inspiration-card .text {
+            padding: 15px;
+        }
+
+        .inspiration-card .text h3 {
+            margin-top: 0;
+            color: #1f74c3;
+            font-size: 20px;
+        }
+
+        .inspiration-card .text p {
+            font-size: 15px;
+            color: #555;
+        }
+
+        footer {
+            background-color: #1f74c3;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <h1><i class="fas fa-globe-europe"></i> Planer Podróży</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Strona główna</a></li>
+                <li><a href="planer.html">Planowanie</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="inspiracje.html">Inspiracje</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+        <main class="content">
+            <h2 style="color: #1f74c3; text-align: center;">🌄 Inspiracje podróżnicze</h2>
+            <p style="text-align: center; color: #444; margin-bottom: 40px;">
+                Zainspiruj się niezwykłymi miejscami na świecie i odkryj swoją następną przygodę!
+            </p>
+        
+            <div class="inspiration-grid">
+                <a href="miejsce.html?miejsce=malediwy" class="inspiration-card">
+                    <img src="https://images.unsplash.com/photo-1669495373534-5d4e32abee7b?w=900&auto=format&fit=crop&q=60" alt="Malediwy">
+                    <div class="text">
+                        <h3>Malediwy</h3>
+                        <p>Rajskie plaże, turkusowa woda i niezapomniane zachody słońca.</p>
+                    </div>
+                </a>
+                <a href="miejsce.html?miejsce=alpy" class="inspiration-card">
+                    <img src="https://plus.unsplash.com/premium_photo-1689084892324-fd8822cb97c1?w=900&auto=format&fit=crop&q=60" alt="Alpy Szwajcarskie">
+                    <div class="text">
+                        <h3>Alpy Szwajcarskie</h3>
+                        <p>Spektakularne widoki i idealne miejsce na aktywny wypoczynek.</p>
+                    </div>
+                </a>
+                <a href="miejsce.html?miejsce=tokio" class="inspiration-card">
+                    <img src="https://plus.unsplash.com/premium_photo-1661914240950-b0124f20a5c1?w=900&auto=format&fit=crop&q=60" alt="Tokio">
+                    <div class="text">
+                        <h3>Tokio</h3>
+                        <p>Miasto przyszłości, które nigdy nie śpi – pełne kultury i technologii.</p>
+                    </div>
+                </a>
+                <a href="miejsce.html?miejsce=safari" class="inspiration-card">
+                    <img src="https://images.unsplash.com/photo-1542085215-673021bf5caa?w=900&auto=format&fit=crop&q=60" alt="Safari w Afryce">
+                    <div class="text">
+                        <h3>Safari w Afryce</h3>
+                        <p>Spotkaj dzikie zwierzęta w ich naturalnym środowisku.</p>
+                    </div>
+                </a>
+                <a href="miejsce.html?miejsce=amazonia" class="inspiration-card">
+                    <img src="https://images.unsplash.com/photo-1591081658714-f576fb7ea3ed?w=900&auto=format&fit=crop&q=60" alt="Amazonia">
+                    <div class="text">
+                        <h3>Amazonia</h3>
+                        <p>Największy las deszczowy świata pełen niezwykłej fauny i flory.</p>
+                    </div>
+                </a>
+                <a href="miejsce.html?miejsce=rafa" class="inspiration-card">
+                    <img src="https://images.unsplash.com/photo-1694064416708-86643bd67335?w=900&auto=format&fit=crop&q=60" alt="Wielka Rafa Koralowa">
+                    <div class="text">
+                        <h3>Wielka Rafa Koralowa</h3>
+                        <p>Odkryj podwodny świat pełen kolorowych koralowców i ryb.</p>
+                    </div>
+                </a>
+                <a href="miejsce.html?miejsce=machu_picchu" class="inspiration-card">
+                    <img src="https://plus.unsplash.com/premium_photo-1694475501155-2f344cea9eb3?w=900&auto=format&fit=crop&q=60" alt="Machu Picchu">
+                    <div class="text">
+                        <h3>Machu Picchu</h3>
+                        <p>Starożytne miasto Inków położone wysoko w peruwiańskich Andach.</p>
+                    </div>
+                </a>
+                <a href="miejsce.html?miejsce=santorini" class="inspiration-card">
+                    <img src="https://plus.unsplash.com/premium_photo-1661964149725-fbf14eabd38c?w=900&auto=format&fit=crop&q=60" alt="Santorini">
+                    <div class="text">
+                        <h3>Santorini</h3>
+                        <p>Białe domki z niebieskimi kopułami na tle błękitnego morza.</p>
+                    </div>
+                </a>
+                <a href="miejsce.html?miejsce=petra" class="inspiration-card">
+                    <img src="https://plus.unsplash.com/premium_photo-1724754604549-f48d1caab92a?w=900&auto=format&fit=crop&q=60" alt="Petra">
+                    <div class="text">
+                        <h3>Petra</h3>
+                        <p>Wykute w skale miasto w Jordanii, pełne historii i tajemnic.</p>
+                    </div>
+                </a>
+            </div>
+            
+        </main>
+
+    <footer>
+        <p>&copy; 2025 Planer Podróży. Wszystkie prawa zastrzeżone.</p>
+    </footer>
+
+</body>
+</html>
