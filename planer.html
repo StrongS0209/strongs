@@ -13,20 +13,20 @@
             background-color: #f5f5f5;
         }
 
-        header.main-header {
+        header {
             background-color: #1f74c3;
             padding: 15px 30px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .main-header nav {
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
         }
 
-        .main-header h1 {
+        nav h1 {
             color: white;
             font-size: 24px;
             margin: 0;
@@ -133,98 +133,266 @@
             padding: 20px;
             margin-top: 60px;
         }
+
+        #gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        #gallery img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .nav-links li a {
+                padding: 10px;
+                width: 100%;
+                display: block;
+            }
+
+            main {
+                margin: 20px auto;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            input[type="text"],
+            input[type="date"],
+            button {
+                font-size: 15px;
+            }
+
+            .route-button {
+                width: 90%;
+                font-size: 15px;
+            }
+
+            nav h1 {
+                font-size: 20px;
+            }
+
+            section h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav h1 {
+                font-size: 18px;
+            }
+
+            .route-button {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            #gallery img {
+                max-width: 100%;
+            }
+
+            footer {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <h1><i class="fas fa-globe-europe"></i> Planer Podróży</h1>
-            <ul class="nav-links">
-                <li><a href="index.html">Strona główna</a></li>
-                <li><a href="planer.html">Planowanie</a></li>
-                <li><a href="galeria.html">Galeria</a></li>
-                <li><a href="inspiracje.html">Inspiracje</a></li>
-                <li><a href="kontakt.html">Kontakt</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    
+<header>
+    <nav>
+        <h1><i class="fas fa-globe-europe"></i> Planer Podróży</h1>
+        <ul class="nav-links">
+            <li><a href="index.html">Strona główna</a></li>
+            <li><a href="planer.html">Planowanie</a></li>
+            <li><a href="galeria.html">Galeria</a></li>
+            <li><a href="inspiracje.html">Inspiracje</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <main>
-        <section id="trip-info">
-            <h2>🧭 Informacje o podróży</h2>
-            <label for="trip-name">Nazwa podróży:</label>
-            <input type="text" id="trip-name" placeholder="Wpisz nazwę podróży">
+<main>
+    <section id="trip-info">
+        <h2>🧭 Informacje o podróży</h2>
+        <label for="trip-name">Nazwa podróży:</label>
+        <input type="text" id="trip-name" placeholder="Wpisz nazwę podróży">
 
-            <label for="start-date">Data rozpoczęcia:</label>
-            <input type="date" id="start-date">
+        <label for="start-date">Data rozpoczęcia:</label>
+        <input type="date" id="start-date">
 
-            <label for="end-date">Data zakończenia:</label>
-            <input type="date" id="end-date">
+        <label for="end-date">Data zakończenia:</label>
+        <input type="date" id="end-date">
 
-            <button onclick="saveTripInfo()">
-                <i class="fas fa-save"></i> Zapisz podróż
-            </button>
-        </section>
-
-        <section id="cities">
-            <h2>🏙️ Dodaj miasta</h2>
-            <label for="city">Miasto:</label>
-            <input type="text" id="city" placeholder="Wpisz miasto">
-            <button onclick="addCity()">
-                <i class="fas fa-city"></i> Dodaj miasto
-            </button>
-            <ul id="city-list"></ul>
-        </section>
-
-        <section id="locations">
-            <h2>📍 Dodaj miejsca</h2>
-            <label for="location">Miejsce:</label>
-            <input type="text" id="location" placeholder="Wpisz miejsce">
-            <button onclick="addLocation()">
-                <i class="fas fa-map-marker-alt"></i> Dodaj miejsce
-            </button>
-            <ul id="locations-list"></ul>
-        </section>
-
-        <section id="activities">
-            <h2>🎡 Dodaj atrakcje</h2>
-            <label for="activity">Atrakcja:</label>
-            <input type="text" id="activity" placeholder="Wpisz atrakcję">
-            <button onclick="addActivity()">
-                <i class="fas fa-cogs"></i> Dodaj atrakcję
-            </button>
-            <ul id="activity-list"></ul>
-        </section>
-
-        <section id="image-gallery">
-            <h2>📷 Galeria zdjęć</h2>
-            <div id="gallery"></div>
-            <button id="add-location-btn">
-                <i class="fas fa-image"></i> Dodaj zdjęcie
-            </button>
-        </section>
-        <section id="generated-route" style="display:none;">
-            <h2>📌 Zaplanowana trasa</h2>
-            <div id="route-content"></div>
-        </section>
-        
-    </main>
-
-    <div class="route-wrapper">
-        <button class="route-button" onclick="generateRoute()">
-            <i class="fas fa-route"></i> Planowanie trasy
+        <button onclick="saveTripInfo()">
+            <i class="fas fa-save"></i> Zapisz podróż
         </button>
-    </div>
-    
-    
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Planer Podróży. Wszystkie prawa zastrzeżone.</p>
-    </footer>
+    <section id="cities">
+        <h2>🏙️ Dodaj miasta</h2>
+        <label for="city">Miasto:</label>
+        <input type="text" id="city" placeholder="Wpisz miasto">
+        <button onclick="addCity()">
+            <i class="fas fa-city"></i> Dodaj miasto
+        </button>
+        <ul id="city-list"></ul>
+    </section>
 
-    <script src="script.js"></script>
+    <section id="locations">
+        <h2>📍 Dodaj miejsca</h2>
+        <label for="location">Miejsce:</label>
+        <input type="text" id="location" placeholder="Wpisz miejsce">
+        <button onclick="addLocation()">
+            <i class="fas fa-map-marker-alt"></i> Dodaj miejsce
+        </button>
+        <ul id="locations-list"></ul>
+    </section>
+
+    <section id="activities">
+        <h2>🎡 Dodaj atrakcje</h2>
+        <label for="activity">Atrakcja:</label>
+        <input type="text" id="activity" placeholder="Wpisz atrakcję">
+        <button onclick="addActivity()">
+            <i class="fas fa-cogs"></i> Dodaj atrakcję
+        </button>
+        <ul id="activity-list"></ul>
+    </section>
+
+    <section id="image-gallery">
+        <h2>📷 Galeria zdjęć</h2>
+        <div id="gallery"></div>
+        <button id="add-location-btn">
+            <i class="fas fa-image"></i> Dodaj zdjęcie
+        </button>
+    </section>
+
+    <section id="generated-route" style="display:none;">
+        <h2>📌 Zaplanowana trasa</h2>
+        <div id="route-content"></div>
+    </section>
+</main>
+
+<div class="route-wrapper">
+    <button class="route-button" onclick="generateRoute()">
+        <i class="fas fa-route"></i> Planowanie trasy
+    </button>
+</div>
+
+<footer>
+    <p>&copy; 2025 Planer Podróży. Wszystkie prawa zastrzeżone.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
+<script>
+    function generateRoute() {
+        const cityList = document.querySelectorAll('#city-list li');
+        const locationList = document.querySelectorAll('#locations-list li');
+
+        const routeContent = document.getElementById('route-content');
+        routeContent.innerHTML = ''; // Очищаем перед генерацией
+
+        // Заголовок для городов
+        if (cityList.length > 0) {
+            const citiesTitle = document.createElement('h3');
+            citiesTitle.textContent = '📍 Miasta do odwiedzenia:';
+            routeContent.appendChild(citiesTitle);
+
+            const cityUl = document.createElement('ul');
+            cityList.forEach(city => {
+                const li = document.createElement('li');
+                li.textContent = city.textContent;
+                cityUl.appendChild(li);
+            });
+            routeContent.appendChild(cityUl);
+        }
+
+        // Заголовок для miejsc
+        if (locationList.length > 0) {
+            const locationsTitle = document.createElement('h3');
+            locationsTitle.textContent = '📌 Miejsca do zobaczenia:';
+            routeContent.appendChild(locationsTitle);
+
+            const locationUl = document.createElement('ul');
+            locationList.forEach(location => {
+                const li = document.createElement('li');
+                li.textContent = location.textContent;
+                locationUl.appendChild(li);
+            });
+            routeContent.appendChild(locationUl);
+        }
+
+        // Показываем маршрут
+        document.getElementById('generated-route').style.display = 'block';
+
+        // Скрываем остальные секции
+        document.getElementById('trip-info').style.display = 'none';
+        document.getElementById('cities').style.display = 'none';
+        document.getElementById('locations').style.display = 'none';
+        document.getElementById('activities').style.display = 'none';
+        document.getElementById('image-gallery').style.display = 'none';
+        document.querySelector('.route-wrapper').style.display = 'none';
+    }
+
+    // Функции добавления (если их ещё нет)
+    function addCity() {
+        const input = document.getElementById('city');
+        const list = document.getElementById('city-list');
+        if (input.value.trim() !== '') {
+            const li = document.createElement('li');
+            li.textContent = input.value.trim();
+            list.appendChild(li);
+            input.value = '';
+        }
+    }
+
+    function addLocation() {
+        const input = document.getElementById('location');
+        const list = document.getElementById('locations-list');
+        if (input.value.trim() !== '') {
+            const li = document.createElement('li');
+            li.textContent = input.value.trim();
+            list.appendChild(li);
+            input.value = '';
+        }
+    }
+
+    function addActivity() {
+        const input = document.getElementById('activity');
+        const list = document.getElementById('activity-list');
+        if (input.value.trim() !== '') {
+            const li = document.createElement('li');
+            li.textContent = input.value.trim();
+            list.appendChild(li);
+            input.value = '';
+        }
+    }
+
+    function saveTripInfo() {
+        // Можно расширить при необходимости
+        alert("Podróż została zapisana!");
+    }
+</script>
