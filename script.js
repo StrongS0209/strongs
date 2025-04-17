@@ -284,3 +284,17 @@ function generateRoute() {
     routeSection.style.display = 'block';
     routeSection.scrollIntoView({ behavior: 'smooth' });
 }
+cityListItems.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item.firstChild.textContent || item.textContent;
+    ul.appendChild(li);
+});
+locationListItems.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item.firstChild.textContent || item.textContent;
+    ul.appendChild(li);
+});
+function toggleNav() {
+    const nav = document.getElementById("navLinks");
+    nav.classList.toggle("show");
+}
