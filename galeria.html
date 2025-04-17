@@ -2,22 +2,21 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Galeria wspomnień</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Galeria wspomnień</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
             margin: 0;
+            font-family: 'Segoe UI', sans-serif;
             background-color: #f9f9f9;
             color: #333;
         }
 
         header {
-            background-color: #0077b6;
+            background-color: #1f74c3;
             color: white;
-            padding: 1rem 2rem;
+            padding: 1rem 1.5rem;
         }
 
         nav {
@@ -27,8 +26,9 @@
             flex-wrap: wrap;
         }
 
-        .nav-title {
+        nav h1 {
             font-size: 1.5rem;
+            margin: 0;
         }
 
         .nav-toggle {
@@ -40,8 +40,7 @@
         .nav-links {
             list-style: none;
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
             margin: 0;
             padding: 0;
         }
@@ -50,173 +49,98 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
+            padding: 10px;
+            display: block;
         }
 
         main {
             padding: 2rem;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: auto;
         }
 
         h2 {
             text-align: center;
-            color: #023e8a;
+            color: #1f74c3;
         }
 
-        .upload-section {
-            background: #ffffff;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            text-align: center;
+        #upload {
+            display: block;
+            margin: 0 auto 20px auto;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 400px;
         }
 
-        .upload-section input[type="file"],
-        .upload-section input[type="text"] {
-            padding: 0.5rem;
-            width: 80%;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            border: 1px solid #ccc;
+        #galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
         }
 
-        .upload-section button {
-            padding: 0.6rem 1.5rem;
+        .image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            background: white;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: rgba(255, 255, 255, 0.9);
             border: none;
-            background-color: #0077b6;
-            color: white;
-            border-radius: 8px;
+            border-radius: 50%;
             cursor: pointer;
+            padding: 6px 8px;
+            font-size: 14px;
+            color: #c0392b;
             transition: background-color 0.3s;
         }
 
-        .upload-section button:hover {
-            background-color: #0096c7;
-        }
-
-        .tag-btn {
-            background-color: #0077b6;
-            color: white;
-            padding: 0.5rem 1rem;
-            margin: 5px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .tag-btn:hover {
-            background-color: #0096c7;
-        }
-
-        .memory-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .memory-item {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .memory-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            cursor: pointer;
-        }
-
-        .memory-item p {
-            padding: 0.8rem;
-            text-align: center;
-            font-size: 0.95rem;
-            margin: 0;
-        }
-
-        footer {
-            background-color: #023e8a;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal img {
-            max-width: 90%;
-            max-height: 80%;
-            border-radius: 10px;
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .download-btn {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #00b4d8;
-            padding: 10px 20px;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
+        .delete-btn:hover {
+            background-color: rgba(255, 255, 255, 1);
         }
 
         @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+                color: white;
+            }
+
             .nav-links {
                 display: none;
                 flex-direction: column;
                 width: 100%;
-                background-color: #0077b6;
-                margin-top: 1rem;
+                margin-top: 10px;
+                background-color: #1f74c3;
             }
 
             .nav-links.show {
                 display: flex;
             }
 
-            .nav-toggle {
-                display: block;
-                color: white;
-            }
-
-            .memory-item img {
-                height: 180px;
+            .nav-links li a {
+                padding: 12px 20px;
             }
         }
     </style>
 </head>
 <body>
+
 <header>
     <nav>
-        <h1 class="nav-title"><i class="fas fa-globe-europe"></i> Planer Podróży</h1>
+        <h1><i class="fas fa-image"></i> Galeria</h1>
         <div class="nav-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></div>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Strona główna</a></li>
@@ -229,127 +153,42 @@
 </header>
 
 <main>
-    <section class="upload-section">
-        <h2><i class="fas fa-images"></i> Dodaj wspomnienie</h2>
-        <input type="file" id="imageUpload" accept="image/*"><br>
-        <input type="text" id="caption" placeholder="Dodaj opis swojego wspomnienia..."><br>
-        <button onclick="addMemory()">Dodaj do galerii</button>
-    </section>
-
-    <div style="text-align:center; margin-bottom: 1.5rem;">
-        <button class="tag-btn" onclick="filterGallery('all')">Wszystkie</button>
-        <button class="tag-btn" onclick="filterGallery('góry')">Góry</button>
-        <button class="tag-btn" onclick="filterGallery('plaża')">Plaża</button>
-        <button class="tag-btn" onclick="filterGallery('miasto')">Miasto</button>
-        <button class="tag-btn" onclick="filterGallery('las')">Las</button>
-        <button class="tag-btn" onclick="filterGallery('zamek')">Zamek</button>
-        <button class="tag-btn" onclick="filterGallery('jezioro')">Jezioro</button>
-        <button class="tag-btn" onclick="filterGallery('wschód')">Wschód</button>
-        <button class="tag-btn" onclick="filterGallery('zachód')">Zachód</button>
-    </div>
-
-    <section class="memory-gallery" id="gallery">
-        <!-- Оригинальные картинки -->
-        <div class="memory-item" data-tag="góry">
-            <img src="https://images.unsplash.com/photo-1698488232832-06eb9209c6b6?w=700" onclick="openModal(this)">
-            <p>Wędrówka w Alpach</p>
-        </div>
-        <div class="memory-item" data-tag="miasto">
-            <img src="https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?w=700" onclick="openModal(this)">
-            <p>Ulice Paryża</p>
-        </div>
-        <div class="memory-item" data-tag="plaża">
-            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=700" onclick="openModal(this)">
-            <p>Rajska plaża</p>
-        </div>
-        <div class="memory-item" data-tag="las">
-            <img src="https://images.unsplash.com/photo-1507041957456-9c397ce39c97?w=700" onclick="openModal(this)">
-            <p>Spacer po lesie</p>
-        </div>
-        <div class="memory-item" data-tag="zamek">
-            <img src="https://images.unsplash.com/photo-1606170927122-9d111e6d949e?w=700" onclick="openModal(this)">
-            <p>Zamek Neuschwanstein</p>
-        </div>
-        <div class="memory-item" data-tag="jezioro">
-            <img src="https://plus.unsplash.com/premium_photo-1697644693303-d6e0660a1a8d?w=700" onclick="openModal(this)">
-            <p>Poranek nad jeziorem</p>
-        </div>
-        <div class="memory-item" data-tag="wschód">
-            <img src="https://plus.unsplash.com/premium_photo-1729522049242-7256602205de?w=700" onclick="openModal(this)">
-            <p>Wschód słońca</p>
-        </div>
-        <div class="memory-item" data-tag="zachód">
-            <img src="https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?w=700" onclick="openModal(this)">
-            <p>Zachód słońca</p>
-        </div>
-    </section>
+    <h2>📷 Dodaj wspomnienia</h2>
+    <input type="file" accept="image/*" id="upload" multiple>
+    <div id="galeria"></div>
 </main>
 
-<div id="imageModal" class="modal" onclick="closeModal()">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
-    <button class="download-btn" onclick="downloadImage()">Pobierz obraz</button>
-</div>
-
-<footer>
-    <p>&copy; 2025 Planer Podróży. Wszystkie prawa zastrzeżone.</p>
-</footer>
-
 <script>
-    function addMemory() {
-        const imageInput = document.getElementById("imageUpload");
-        const caption = document.getElementById("caption").value;
-        const gallery = document.getElementById("gallery");
+    const upload = document.getElementById('upload');
+    const galeria = document.getElementById('galeria');
 
-        if (imageInput.files.length === 0) {
-            alert("Wybierz obrazek!");
-            return;
-        }
+    upload.addEventListener('change', function () {
+        const files = Array.from(upload.files);
 
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const div = document.createElement("div");
-            div.className = "memory-item";
-            div.setAttribute("data-tag", "nowe");
-            div.innerHTML = `
-                <img src="${e.target.result}" onclick="openModal(this)">
-                <p>${caption}</p>
-            `;
-            gallery.prepend(div);
-            imageInput.value = "";
-            document.getElementById("caption").value = "";
-        };
+        files.forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'image-wrapper';
 
-        reader.readAsDataURL(imageInput.files[0]);
-    }
+                const img = document.createElement('img');
+                img.src = reader.result;
 
-    function filterGallery(tag) {
-        const items = document.querySelectorAll(".memory-item");
-        items.forEach(item => {
-            item.style.display = (tag === "all" || item.getAttribute("data-tag") === tag) ? "flex" : "none";
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+                deleteBtn.onclick = () => wrapper.remove();
+
+                wrapper.appendChild(img);
+                wrapper.appendChild(deleteBtn);
+                galeria.appendChild(wrapper);
+            };
+            reader.readAsDataURL(file);
         });
-    }
 
-    function openModal(img) {
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImage");
-        modal.style.display = "flex";
-        modalImg.src = img.src;
-    }
+        upload.value = '';
+    });
 
-    function closeModal() {
-        document.getElementById("imageModal").style.display = "none";
-    }
-
-    function downloadImage() {
-        const img = document.getElementById("modalImage");
-        const link = document.createElement("a");
-        link.href = img.src;
-        link.download = "wspomnienie.jpg";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
     function toggleNav() {
         const nav = document.getElementById("navLinks");
         nav.classList.toggle("show");
