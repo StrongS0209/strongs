@@ -1,240 +1,333 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Witamy w Planerze Podróży</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <meta charset="UTF-8">
+    <title>Galeria wspomnień</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            box-sizing: border-box;
-        }
         body {
-            margin: 0;
             font-family: 'Segoe UI', sans-serif;
-            background-color: #f0f4f8;
+            margin: 0;
+            background-color: #f9f9f9;
             color: #333;
         }
+
+        header {
+            background-color: #0077b6;
+            color: white;
+            padding: 1rem 2rem;
+        }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #1f74c3;
-            padding: 20px;
             flex-wrap: wrap;
         }
-        nav h1 {
-            color: white;
-            margin: 0;
-            font-size: 24px;
-        }
+
         .nav-links {
-            display: flex;
             list-style: none;
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px;
-            padding: 0;
             margin: 0;
+            padding: 0;
         }
+
         .nav-links li a {
             color: white;
             text-decoration: none;
             font-weight: bold;
         }
 
-        .intro-banner {
-            position: relative;
-            height: 80vh;
-            overflow: hidden;
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: auto;
         }
-        .world-map-bg {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .intro-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+
+        h2 {
             text-align: center;
-            padding: 20px;
+            color: #023e8a;
         }
-        .intro-text {
-            color: white;
-            max-width: 700px;
+
+        .upload-section {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
         }
-        .intro-text h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-        .intro-text h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-        .intro-text p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-        .cta-button {
-            background-color: #ffcc00;
-            color: #333;
-            padding: 12px 24px;
-            font-weight: bold;
-            text-decoration: none;
+
+        .upload-section input[type="file"],
+        .upload-section input[type="text"] {
+            padding: 0.5rem;
+            width: 80%;
+            margin-bottom: 1rem;
             border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .upload-section button {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            background-color: #0077b6;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
             transition: background-color 0.3s;
         }
-        .cta-button:hover {
-            background-color: #e6b800;
+
+        .upload-section button:hover {
+            background-color: #0096c7;
         }
 
-        .features {
-            padding: 50px 20px;
-            text-align: center;
-            background-color: white;
+        .tag-btn {
+            background-color: #0077b6;
+            color: white;
+            padding: 0.5rem 1rem;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
         }
-        .features h2 {
-            font-size: 32px;
-            margin-bottom: 40px;
+
+        .tag-btn:hover {
+            background-color: #0096c7;
         }
-        .feature-grid {
+
+        .memory-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            justify-items: center;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
         }
-        .feature-card {
-            background-color: #f9f9f9;
-            padding: 25px;
+
+        .memory-item {
+            background: white;
             border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .memory-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .memory-item p {
+            padding: 0.8rem;
             text-align: center;
-            text-decoration: none;
-            color: inherit;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+            font-size: 0.95rem;
+            margin: 0;
         }
-        .feature-card:hover {
-            transform: translateY(-5px);
+
+        footer {
+            background-color: #023e8a;
+            color: white;
+            padding: 1rem;
+            text-align: center;
         }
-        .circle-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px;
-        }
-        .circle-icon img {
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;
-        }
-        footer {
-            background-color: #1f74c3;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
         }
 
-        /* === RESPONSYWNOŚĆ === */
+        .modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .download-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00b4d8;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                align-items: flex-start;
+            .memory-item img {
+                height: 180px;
             }
+
             .nav-links {
                 flex-direction: column;
-                width: 100%;
-                margin-top: 10px;
-            }
-            .nav-links li {
-                padding: 5px 0;
-            }
-
-            .intro-text h1 {
-                font-size: 36px;
-            }
-            .intro-text h2 {
-                font-size: 22px;
-            }
-            .intro-text p {
-                font-size: 16px;
-            }
-            .cta-button {
-                font-size: 16px;
-                padding: 10px 20px;
-            }
-
-            .features {
-                padding: 30px 10px;
-            }
-            .features h2 {
-                font-size: 26px;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <h1><i class="fas fa-globe-europe"></i> Planer Podróży</h1>
-            <ul class="nav-links">
-                <li><a href="planer.html">Planowanie</a></li>
-                <li><a href="galeria.html">Galeria</a></li>
-                <li><a href="inspiracje.html">Inspiracje</a></li>
-                <li><a href="kontakt.html">Kontakt</a></li>
-            </ul>
-        </nav>
-    </header>
-    
+<header>
+    <nav>
+        <h1><i class="fas fa-globe-europe"></i> Planer Podróży</h1>
+        <ul class="nav-links">
+            <li><a href="index.html">Strona główna</a></li>
+            <li><a href="planer.html">Planowanie</a></li>
+            <li><a href="galeria.html">Galeria</a></li>
+            <li><a href="inspiracje.html">Inspiracje</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <section class="intro-banner">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" 
-             alt="Mapa świata" class="world-map-bg"/>
-        <div class="intro-overlay">
-            <div class="intro-text">
-                <h1>Planer Podróży</h1>
-                <h2>Wyrusz w podróż marzeń</h2>
-                <p>Świat czeka na Ciebie – zaplanuj niezapomniane przygody, odkrywaj nowe miejsca i twórz wspomnienia, które zostaną z Tobą na zawsze.</p>
-                <a href="planer.html" class="cta-button">Zacznij planować</a>
-            </div>
-        </div>
+<main>
+    <section class="upload-section">
+        <h2><i class="fas fa-images"></i> Dodaj wspomnienie</h2>
+        <input type="file" id="imageUpload" accept="image/*"><br>
+        <input type="text" id="caption" placeholder="Dodaj opis swojego wspomnienia..."><br>
+        <button onclick="addMemory()">Dodaj do galerii</button>
     </section>
 
-    <section class="features">
-        <h2>Co oferujemy?</h2>
-        <div class="feature-grid">
-            <a href="planer.html" class="feature-card">
-                <div class="circle-icon">
-                    <img src="https://cdn-icons-png.flaticon.com/512/854/854894.png" alt="mapa">
-                </div>
-                <h3>Planowanie trasy</h3>
-                <p>Twórz listę miast, miejsc i atrakcji które chcesz odwiedzić.</p>
-            </a>
-    
-            <a href="galeria.html" class="feature-card">
-                <div class="circle-icon">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="galeria">
-                </div>
-                <h3>Galeria wspomnień</h3>
-                <p>Dodawaj zdjęcia i zapisuj swoje wspomnienia z podróży.</p>
-            </a>
-    
-            <a href="inspiracje.html" class="feature-card">
-                <div class="circle-icon">
-                    <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png" alt="inspiracje">
-                </div>
-                <h3>Inspiracje</h3>
-                <p>Odkryj najpiękniejsze zakątki świata, polecane przez podróżników.</p>
-            </a>
+    <div style="text-align:center; margin-bottom: 1.5rem;">
+        <button class="tag-btn" onclick="filterGallery('all')">Wszystkie</button>
+        <button class="tag-btn" onclick="filterGallery('góry')">Góry</button>
+        <button class="tag-btn" onclick="filterGallery('plaża')">Plaża</button>
+        <button class="tag-btn" onclick="filterGallery('miasto')">Miasto</button>
+        <button class="tag-btn" onclick="filterGallery('las')">Las</button>
+        <button class="tag-btn" onclick="filterGallery('zamek')">Zamek</button>
+        <button class="tag-btn" onclick="filterGallery('jezioro')">Jezioro</button>
+        <button class="tag-btn" onclick="filterGallery('wschód')">Wschód</button>
+        <button class="tag-btn" onclick="filterGallery('zachód')">Zachód</button>
+    </div>
+
+    <section class="memory-gallery" id="gallery">
+        <!-- Оригинальные картинки -->
+        <div class="memory-item" data-tag="góry">
+            <img src="https://images.unsplash.com/photo-1698488232832-06eb9209c6b6?w=700" onclick="openModal(this)">
+            <p>Wędrówka w Alpach</p>
+        </div>
+        <div class="memory-item" data-tag="miasto">
+            <img src="https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?w=700" onclick="openModal(this)">
+            <p>Ulice Paryża</p>
+        </div>
+        <div class="memory-item" data-tag="plaża">
+            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=700" onclick="openModal(this)">
+            <p>Rajska plaża</p>
+        </div>
+        <div class="memory-item" data-tag="las">
+            <img src="https://images.unsplash.com/photo-1507041957456-9c397ce39c97?w=700" onclick="openModal(this)">
+            <p>Spacer po lesie</p>
+        </div>
+        <div class="memory-item" data-tag="zamek">
+            <img src="https://images.unsplash.com/photo-1606170927122-9d111e6d949e?w=700" onclick="openModal(this)">
+            <p>Zamek Neuschwanstein</p>
+        </div>
+        <div class="memory-item" data-tag="jezioro">
+            <img src="https://plus.unsplash.com/premium_photo-1697644693303-d6e0660a1a8d?w=700" onclick="openModal(this)">
+            <p>Poranek nad jeziorem</p>
+        </div>
+        <div class="memory-item" data-tag="wschód">
+            <img src="https://plus.unsplash.com/premium_photo-1729522049242-7256602205de?w=700" onclick="openModal(this)">
+            <p>Wschód słońca</p>
+        </div>
+        <div class="memory-item" data-tag="zachód">
+            <img src="https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?w=700" onclick="openModal(this)">
+            <p>Zachód słońca</p>
         </div>
     </section>
-    
-    <footer>
-        <p>&copy; 2025 Planer Podróży. Wszystkie prawa zastrzeżone.</p>
-    </footer>
+</main>
+
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+    <button class="download-btn" onclick="downloadImage()">Pobierz obraz</button>
+</div>
+
+<footer>
+    <p>&copy; 2025 Planer Podróży. Wszystkie prawa zastrzeżone.</p>
+</footer>
+
+<script>
+    function addMemory() {
+        const imageInput = document.getElementById("imageUpload");
+        const caption = document.getElementById("caption").value;
+        const gallery = document.getElementById("gallery");
+
+        if (imageInput.files.length === 0) {
+            alert("Wybierz obrazek!");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const div = document.createElement("div");
+            div.className = "memory-item";
+            div.setAttribute("data-tag", "nowe");
+            div.innerHTML = `
+                <img src="${e.target.result}" onclick="openModal(this)">
+                <p>${caption}</p>
+            `;
+            gallery.prepend(div);
+            imageInput.value = "";
+            document.getElementById("caption").value = "";
+        };
+
+        reader.readAsDataURL(imageInput.files[0]);
+    }
+
+    function filterGallery(tag) {
+        const items = document.querySelectorAll(".memory-item");
+        items.forEach(item => {
+            item.style.display = (tag === "all" || item.getAttribute("data-tag") === tag) ? "flex" : "none";
+        });
+    }
+
+    function openModal(img) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+
+    function downloadImage() {
+        const img = document.getElementById("modalImage");
+        const link = document.createElement("a");
+        link.href = img.src;
+        link.download = "wspomnienie.jpg";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
 
 </body>
 </html>
